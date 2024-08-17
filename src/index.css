@@ -7,6 +7,6 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden; /* Optional: prevents scrolling if the content is larger than the viewport */
+    /* overflow: hidden; Optional: prevents scrolling if the content is larger than the viewport */
   }
   
