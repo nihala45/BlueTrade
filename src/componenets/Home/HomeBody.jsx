@@ -82,11 +82,9 @@ function HomeBody() {
   <img
     src={tent}
     alt="Outdoor Tent"
-    className="w-500 object-cover rounded-lg shadow-lg mt-4 mb-4"
+    className="w-full h-30 object-cover rounded-lg shadow-lg mt-4 mb-4"
   />
       </div>
-
-      
     </div>
   );
 }
