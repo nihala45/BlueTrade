@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 // AuthModal Component
 function AuthModal({ isOpen, onClose, currentForm, switchForm }) {
   if (!isOpen) return null;
+  const navigate = useNavigate();
 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
@@ -13,11 +15,11 @@ function AuthModal({ isOpen, onClose, currentForm, switchForm }) {
           <form>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium mb-2">Email:</label>
-              <input type="email" id="email" placeholder="Email" className="border rounded-lg w-full px-4 py-2" />
+              <input type="email" id="email" placeholder="Email" className="border rounded-lg w-full px-4 py-2" required />
             </div>
             <div className="mb-4">
               <label htmlFor="password" className="block text-sm font-medium mb-2">Password:</label>
-              <input type="password" id="password" placeholder="Password" className="border rounded-lg w-full px-4 py-2" />
+              <input type="password" id="password" placeholder="Password" className="border rounded-lg w-full px-4 py-2" required />
             </div>
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">Sign In</button>
             <button type="button" onClick={onClose} className="ml-4 bg-gray-500 text-white px-4 py-2 rounded-lg">Close</button>
@@ -28,16 +30,24 @@ function AuthModal({ isOpen, onClose, currentForm, switchForm }) {
         ) : (
           <form>
             <div className="mb-4">
+              <label htmlFor="register-name" className="block text-sm font-medium mb-2">Username:</label>
+              <input type="text" id="register-name" placeholder="Username" className="border rounded-lg w-full px-4 py-2" required />
+            </div>
+            <div className="mb-4">
               <label htmlFor="register-email" className="block text-sm font-medium mb-2">Email:</label>
-              <input type="email" id="register-email" placeholder="Email" className="border rounded-lg w-full px-4 py-2" />
+              <input type="email" id="register-email" placeholder="Email" className="border rounded-lg w-full px-4 py-2" required />
             </div>
             <div className="mb-4">
               <label htmlFor="register-password" className="block text-sm font-medium mb-2">Password:</label>
-              <input type="password" id="register-password" placeholder="Password" className="border rounded-lg w-full px-4 py-2" />
+              <input type="password" id="register-password" placeholder="Password" className="border rounded-lg w-full px-4 py-2" required />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="register-phone" className="block text-sm font-medium mb-2">Phone Number:</label>
+              <input type="tel" id="register-phone" placeholder="Phone Number" className="border rounded-lg w-full px-4 py-2" required />
             </div>
             <div className="mb-4">
               <label htmlFor="confirm-password" className="block text-sm font-medium mb-2">Confirm Password:</label>
-              <input type="password" id="confirm-password" placeholder="Confirm Password" className="border rounded-lg w-full px-4 py-2" />
+              <input type="password" id="confirm-password" placeholder="Confirm Password" className="border rounded-lg w-full px-4 py-2" required />
             </div>
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">Register</button>
             <button type="button" onClick={onClose} className="ml-4 bg-gray-500 text-white px-4 py-2 rounded-lg">Close</button>
@@ -69,7 +79,7 @@ function Header() {
       </div>
 
       <nav className="flex-1 flex justify-center space-x-8">
-        <a href="#" className="text-white text-lg hover:text-green-300 transition-colors duration-200">Shop</a>
+        <Link to="/shop" className="text-white text-lg hover:text-green-300 transition-colors duration-200">Shop</Link>
         <a href="#" className="text-white text-lg hover:text-green-300 transition-colors duration-200">Deals & Promotions</a>
         <a href="#" className="text-white text-lg hover:text-green-300 transition-colors duration-200">Category</a>
         <a href="#" className="text-white text-lg hover:text-green-300 transition-colors duration-200">Age</a>
