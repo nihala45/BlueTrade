@@ -4,11 +4,17 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa'; // Font Awesome Icons for 
 import toysmain from '../../images/toysmain.jpg'; // Example toy image
 import tent from '../../images/tentpic.jpg'; // Example tent image
 
+
 function ShopBody() {
   const [wishlist, setWishlist] = useState([]);
   const navigate = useNavigate();
-  function goTocart(){
-    navigate('/Cart')
+
+  function goToCart() {
+    navigate('/Cart');
+  }
+
+  function goToProduct() {
+    navigate('/Productdetail');
   }
 
   // Sample product data
@@ -41,17 +47,36 @@ function ShopBody() {
   return (
     <div style={{ padding: '20px', backgroundColor: '#f0f0f0', fontFamily: 'Arial, sans-serif' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '30px', fontSize: '2.5rem', color: '#333' }}>Shop</h1>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
         {products.map((product) => (
-          <div key={product.id} style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', width: '250px', position: 'relative' }} onClick={goTocart}>
-            <img src={product.image} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px' }} />
+          <div
+            key={product.id}
+            style={{
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '10px',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+              width: '250px',
+              position: 'relative',
+              cursor: 'pointer',
+            }}
+            onClick={goToProduct}
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px' }}
+            />
             <h2 style={{ fontSize: '1.5rem', marginTop: '10px', color: '#333' }}>{product.name}</h2>
             <p style={{ color: '#777' }}>Category: {product.category}</p>
             <p style={{ fontSize: '1.25rem', color: '#2c3e50' }}>${product.price}</p>
 
             {/* Heart Wishlist Button */}
             <button
-              onClick={() => toggleWishlist(product)}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent clicking on the heart button from triggering the product click
+                toggleWishlist(product);
+              }}
               style={{
                 background: 'none',
                 border: 'none',
